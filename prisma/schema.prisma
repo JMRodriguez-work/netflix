@@ -13,18 +13,18 @@ datasource db {
 // DOCS: https://authjs.dev/reference/adapter/prisma
 
 model Account {
-  id                 String  @id @default(cuid())
-  userId             String
-  type               String
-  provider           String
-  providerAccountId  String
-  refresh_token      String?  @db.Text
-  access_token       String?  @db.Text
-  expires_at         Int?
-  token_type         String?
-  scope              String?
-  id_token           String?  @db.Text
-  session_state      String?
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
 
   refresh_token_expires_in Int?
 
@@ -57,4 +57,29 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Movie {
+  id            Int    @id
+  imageString   String
+  title         String
+  age           Int
+  duration      Float
+  overview      String
+  release   Int
+  videoSource   String
+  category      String
+  youtubeString String
+
+  createdAt DateTime @default(now())
+
+  WatchLists WatchList[]
+}
+
+model WatchList {
+  id     String @id @default(uuid())
+  userId String
+
+  Movie   Movie? @relation(fields: [movieId], references: [id])
+  movieId Int?
 }
