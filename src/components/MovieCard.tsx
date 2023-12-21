@@ -3,6 +3,8 @@
 import { Button } from '@/components/ui/button';
 import { Heart, PlayCircle } from 'lucide-react';
 import { useState } from 'react';
+import { addToWatchList } from '@/action';
+import { usePathname } from 'next/navigation';
 import { PlayVideoModel } from './PlayVideoModel';
 
 interface MovieProps {
@@ -21,6 +23,7 @@ export function MovieCard({
   movieId, overview, title, watchList, watchListId, youtubeUrl, age, time, year,
 }: MovieProps) {
   const [open, setOpen] = useState<boolean>(false);
+  const pathname = usePathname();
 
   return (
     <>
@@ -32,11 +35,13 @@ export function MovieCard({
         {watchList ? (
           <form>
             <Button variant="outline" size="icon">
-              <Heart className="w-4 h-4 text-red-500" />
+              <Heart className="w-4 h-4 text-red-500" fill="rgb(239 68 68)" />
             </Button>
           </form>
         ) : (
-          <form>
+          <form action={addToWatchList}>
+            <input type="hidden" name="movieId" value={movieId} />
+            <input type="hidden" name="pathname" value={pathname} />
             <Button variant="outline" size="icon">
               <Heart className="w-4 h-4" />
             </Button>
