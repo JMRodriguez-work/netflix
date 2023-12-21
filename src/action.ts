@@ -4,8 +4,8 @@
 
 import { getServerSession } from 'next-auth';
 import { revalidatePath } from 'next/cache';
-import db from './app/utils/db';
 import { authOptions } from './app/utils/auth';
+import prisma from './app/utils/db';
 
 export async function addToWatchList(formData: FormData) {
   'use server';
@@ -14,7 +14,7 @@ export async function addToWatchList(formData: FormData) {
   const movieId = formData.get('movieId');
   const pathname = formData.get('pathname') as string;
 
-  const data = await db.watchList.create({
+  const data = await prisma.watchList.create({
     data: {
       userId: session?.user?.email as string,
       movieId: Number(movieId),
@@ -31,7 +31,7 @@ export async function removeFromWatchList(formData: FormData) {
   const pathname = formData.get('pathname') as string;
   const watchListId = formData.get('watchlistId') as string;
 
-  const data = await db.watchList.delete({
+  const data = await prisma.watchList.delete({
     where: {
       id: watchListId,
     },

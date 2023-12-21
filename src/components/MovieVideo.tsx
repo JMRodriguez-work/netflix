@@ -1,4 +1,4 @@
-import prisma from '../app/utils/db';
+import prisma from '@/app/utils/db';
 import { MovieButtons } from './MovieButtons';
 
 async function getData() {

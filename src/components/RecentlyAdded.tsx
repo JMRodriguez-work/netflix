@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/utils/auth';
+import prisma from '@/app/utils/db';
 import { MovieCard } from './MovieCard';
 
 async function getData(userId: string) {

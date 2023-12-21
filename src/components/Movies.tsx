@@ -1,11 +1,11 @@
 import Image from 'next/image';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/utils/auth';
-import db from '../app/utils/db';
+import prisma from '@/app/utils/db';
 import { MovieCard } from './MovieCard';
 
 async function getData(userId: string) {
-  const data = await db.movie.findMany({
+  const data = await prisma.movie.findMany({
     where: {
       category: 'movie',
     },

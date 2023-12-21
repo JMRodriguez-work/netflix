@@ -2,10 +2,10 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/utils/auth';
 import Image from 'next/image';
 import { MovieCard } from '@/components/MovieCard';
-import db from '../../../utils/db';
+import prisma from '@/app/utils/db';
 
 async function getData(userId: string) {
-  const data = await db.watchList.findMany({
+  const data = await prisma.watchList.findMany({
     where: {
       userId,
     },

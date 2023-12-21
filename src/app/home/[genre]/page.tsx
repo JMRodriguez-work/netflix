@@ -2,12 +2,12 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/utils/auth';
 import Image from 'next/image';
 import { MovieCard } from '@/components/MovieCard';
-import db from '../../utils/db';
+import prisma from '@/app/utils/db';
 
 async function getData(category: string, userId: string) {
   switch (category) {
     case 'shows': {
-      const data = await db.movie.findMany({
+      const data = await prisma.movie.findMany({
         where: {
           category: 'show',
         },
@@ -32,7 +32,7 @@ async function getData(category: string, userId: string) {
     }
 
     case 'movies': {
-      const data = await db.movie.findMany({
+      const data = await prisma.movie.findMany({
         where: {
           category: 'movie',
         },
@@ -57,7 +57,7 @@ async function getData(category: string, userId: string) {
     }
 
     case 'recently': {
-      const data = db.movie.findMany({
+      const data = prisma.movie.findMany({
         where: {
           category: 'recent',
         },
