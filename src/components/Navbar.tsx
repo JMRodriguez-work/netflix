@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { links } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
 import { Bell, Search } from 'lucide-react';
-import logo from '../../../public/netflix_logo.svg';
+import logo from '../../public/netflix_logo.svg';
 import { UserNav } from './UserNav';
 
 export function Navbar() {

@@ -1,8 +1,8 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import Link from 'next/link';
-import { GithubSignInButton } from '@/app/components/GithubSignInButton';
-import { GoogleSignInButton } from '@/app/components/GoogleSignInButton';
+import { GithubSignInButton } from '@/components/GithubSignInButton';
+import { GoogleSignInButton } from '@/components/GoogleSignInButton';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/utils/auth';
 import { redirect } from 'next/navigation';

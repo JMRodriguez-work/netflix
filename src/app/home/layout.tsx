@@ -2,7 +2,7 @@ import { getServerSession } from 'next-auth';
 import { ReactNode } from 'react';
 import { redirect } from 'next/navigation';
 import { authOptions } from '../utils/auth';
-import { Navbar } from '../components/Navbar';
+import { Navbar } from '../../components/Navbar';
 
 export default async function HomeLayout({ children }: { children: ReactNode }) {
   const session = await getServerSession(authOptions);

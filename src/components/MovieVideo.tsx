@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import prisma from '../utils/db';
+import prisma from '../app/utils/db';
 
 async function getData() {
   const data = await prisma.movie.findFirst({
