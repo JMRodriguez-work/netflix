@@ -5,10 +5,11 @@ import Link from 'next/link';
 import { links } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
 import { Bell, Search } from 'lucide-react';
+import { Session } from 'next-auth';
 import logo from '../../public/netflix_logo.svg';
 import { UserNav } from './UserNav';
 
-export function Navbar() {
+export function Navbar({ session } : { session: Session }) {
   const pathName = usePathname();
 
   return (
@@ -54,7 +55,7 @@ export function Navbar() {
       <div className="flex items-center gap-x-8">
         <Search className="w-5 h-5 text-gray-300 cursor-pointer transition-all duration-100 hover:text-white hover:scale-110" />
         <Bell className="w-5 h-5 text-gray-300 cursor-pointer transition-all duration-100 hover:text-white hover:scale-110" />
-        <UserNav />
+        <UserNav session={session} />
       </div>
     </nav>
   );

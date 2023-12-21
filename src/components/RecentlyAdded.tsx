@@ -1,7 +1,9 @@
 import Image from 'next/image';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/app/utils/auth';
 import { MovieCard } from './MovieCard';
 
-async function getData() {
+async function getData(userId: string) {
   // we get the most recent movies
   const data = await prisma?.movie.findMany({
     select: {
@@ -9,7 +11,11 @@ async function getData() {
       id: true,
       overview: true,
       title: true,
-      WatchLists: true,
+      WatchLists: {
+        where: {
+          userId,
+        },
+      },
       youtubeString: true,
       age: true,
       release: true,
@@ -26,7 +32,8 @@ async function getData() {
 }
 
 export async function RecentlyAdded() {
-  const movies = await getData();
+  const session = await getServerSession(authOptions);
+  const movies = await getData(session?.user?.email as string);
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mt-8 gap-6">
       {movies?.map((movie) => (
