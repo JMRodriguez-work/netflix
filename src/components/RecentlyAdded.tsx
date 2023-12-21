@@ -19,6 +19,7 @@ async function getData() {
       createdAt: 'desc',
     },
     take: 4,
+    skip: 1,
   });
 
   return data;
