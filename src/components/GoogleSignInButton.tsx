@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { signIn } from 'next-auth/react';
-import GoogleIcon from '../../../public/google.svg';
+import GoogleIcon from '../../public/google.svg';
 
 export function GoogleSignInButton() {
   return (
