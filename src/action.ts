@@ -24,3 +24,18 @@ export async function addToWatchList(formData: FormData) {
 
   revalidatePath(pathname);
 }
+
+export async function removeFromWatchList(formData: FormData) {
+  'use server';
+
+  const pathname = formData.get('pathname') as string;
+  const watchListId = formData.get('watchlistId') as string;
+
+  const data = await db.watchList.delete({
+    where: {
+      id: watchListId,
+    },
+  });
+
+  revalidatePath(pathname);
+}

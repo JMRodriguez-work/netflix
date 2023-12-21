@@ -3,7 +3,7 @@
 import { Button } from '@/components/ui/button';
 import { Heart, PlayCircle } from 'lucide-react';
 import { useState } from 'react';
-import { addToWatchList } from '@/action';
+import { addToWatchList, removeFromWatchList } from '@/action';
 import { usePathname } from 'next/navigation';
 import { PlayVideoModel } from './PlayVideoModel';
 
@@ -33,8 +33,10 @@ export function MovieCard({
 
       <div className="right-5 top-5 absolute z-10">
         {watchList ? (
-          <form>
+          <form action={removeFromWatchList}>
             <Button variant="outline" size="icon">
+              <input type="hidden" name="watchlistId" value={watchListId} />
+              <input type="hidden" name="pathname" value={pathname} />
               <Heart className="w-4 h-4 text-red-500" fill="rgb(239 68 68)" />
             </Button>
           </form>
